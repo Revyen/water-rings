@@ -1,0 +1,133 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://leo/nozzle.gd" type="Script" id=1]
+[ext_resource path="res://leo/FloatingObject.gd" type="Script" id=2]
+
+[sub_resource type="BoxShape" id=3]
+
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 1, 0.971466, 1 )
+
+[sub_resource type="CubeMesh" id=2]
+
+[sub_resource type="BoxShape" id=6]
+
+[sub_resource type="CubeMesh" id=5]
+
+[node name="Main" type="Node"]
+
+[node name="Nozzles" type="Node" parent="."]
+
+[node name="nozzle_left" type="Area" parent="Nozzles"]
+transform = Transform( 0.866025, 0.5, 0, -0.5, 0.866025, 0, 0, 0, 1, -2.25, 0.75, 0 )
+script = ExtResource( 1 )
+actionName = "left_nozzle"
+
+[node name="CollisionShape" type="CollisionShape" parent="Nozzles/nozzle_left"]
+shape = SubResource( 3 )
+
+[node name="nozzle_right" type="Area" parent="Nozzles"]
+transform = Transform( -0.866025, -0.5, -8.74228e-08, -0.5, 0.866025, 0, 7.57103e-08, 4.37114e-08, -1, 2.25, 0.75, 0 )
+script = ExtResource( 1 )
+actionName = "right_nozzle"
+
+[node name="CollisionShape" type="CollisionShape" parent="Nozzles/nozzle_right"]
+shape = SubResource( 3 )
+
+[node name="Level" type="Node" parent="."]
+
+[node name="DirectionalLight" type="DirectionalLight" parent="Level"]
+transform = Transform( 0.0147896, -0.721555, 0.692199, 0.587428, 0.56648, 0.577953, -0.809141, 0.39807, 0.43224, 0, 1.47078, 0 )
+shadow_enabled = true
+
+[node name="Camera" type="Camera" parent="Level"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.42445, 5.304 )
+
+[node name="Ground" type="Node" parent="Level"]
+
+[node name="StaticBody" type="StaticBody" parent="Level/Ground"]
+transform = Transform( 2.9299, 0, 0, 0, 0.153338, 0, 0, 0, 0.785249, 0, 0, 0 )
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape" type="CollisionShape" parent="Level/Ground/StaticBody"]
+shape = SubResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Level/Ground/StaticBody"]
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="Edge" type="Node" parent="Level"]
+
+[node name="StaticBody" type="StaticBody" parent="Level/Edge"]
+transform = Transform( 2.6687, -0.0632885, 0, 1.20928, 0.139668, 0, 0, 0, 0.785249, -2.59647, -0.531967, 0 )
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape" type="CollisionShape" parent="Level/Edge/StaticBody"]
+shape = SubResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Level/Edge/StaticBody"]
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="StaticBody2" type="StaticBody" parent="Level/Edge"]
+transform = Transform( -2.66879, 0.063149, 6.86269e-08, 1.20932, 0.13936, 0, -2.33313e-07, 5.52066e-09, -0.785, 2.596, -0.532, 0 )
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape" type="CollisionShape" parent="Level/Edge/StaticBody2"]
+shape = SubResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Level/Edge/StaticBody2"]
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="Wall" type="Node" parent="Level"]
+
+[node name="StaticBody" type="StaticBody" parent="Level/Wall"]
+transform = Transform( -1.2807e-07, -0.153338, 0, 2.9299, -6.70261e-09, 0, 0, 0, 0.785249, -3.08266, 2.11398, 0 )
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape" type="CollisionShape" parent="Level/Wall/StaticBody"]
+shape = SubResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Level/Wall/StaticBody"]
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="StaticBody2" type="StaticBody" parent="Level/Wall"]
+transform = Transform( -1.2807e-07, -0.153338, 0, 2.9299, -6.70261e-09, 0, 0, 0, 0.785249, 3.05385, 2.11398, 0 )
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape" type="CollisionShape" parent="Level/Wall/StaticBody2"]
+shape = SubResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Level/Wall/StaticBody2"]
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="TestObj" type="Spatial" parent="."]
+transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -0.382, 3.59, 0 )
+script = ExtResource( 2 )
+
+[node name="RigidBody" type="RigidBody" parent="TestObj"]
+collision_layer = 3
+collision_mask = 3
+gravity_scale = 0.2
+angular_damp = 1.0
+
+[node name="CollisionShape" type="CollisionShape" parent="TestObj/RigidBody"]
+shape = SubResource( 6 )
+
+[node name="MeshInstance" type="MeshInstance" parent="TestObj/RigidBody"]
+mesh = SubResource( 5 )
+skeleton = NodePath("../..")
+material/0 = null
+
+[connection signal="body_entered" from="Nozzles/nozzle_left" to="Nozzles/nozzle_left" method="_on_Area_body_entered"]
+[connection signal="body_exited" from="Nozzles/nozzle_left" to="Nozzles/nozzle_left" method="_on_Area_body_exited"]
+[connection signal="body_entered" from="Nozzles/nozzle_right" to="Nozzles/nozzle_right" method="_on_Area_body_entered"]
+[connection signal="body_exited" from="Nozzles/nozzle_right" to="Nozzles/nozzle_right" method="_on_Area_body_exited"]
