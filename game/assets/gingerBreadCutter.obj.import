@@ -1,0 +1,20 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/gingerBreadCutter.obj-724d0a2ed168551031cff3f9d2e142ee.mesh"
+
+[deps]
+
+files=[ "res://.import/gingerBreadCutter.obj-724d0a2ed168551031cff3f9d2e142ee.mesh" ]
+
+source_file="res://assets/gingerBreadCutter.obj"
+dest_files=[ "res://.import/gingerBreadCutter.obj-724d0a2ed168551031cff3f9d2e142ee.mesh", "res://.import/gingerBreadCutter.obj-724d0a2ed168551031cff3f9d2e142ee.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+octahedral_compression=true
+optimize_mesh_flags=4286

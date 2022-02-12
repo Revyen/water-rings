@@ -1,0 +1,20 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/donutSprinkles.obj-54e610f2e7580502e63c02ce3242355e.mesh"
+
+[deps]
+
+files=[ "res://.import/donutSprinkles.obj-54e610f2e7580502e63c02ce3242355e.mesh" ]
+
+source_file="res://assets/donutSprinkles.obj"
+dest_files=[ "res://.import/donutSprinkles.obj-54e610f2e7580502e63c02ce3242355e.mesh", "res://.import/donutSprinkles.obj-54e610f2e7580502e63c02ce3242355e.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+octahedral_compression=true
+optimize_mesh_flags=4286
